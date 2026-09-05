@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { facultyMembers } from '../data/facultyData'
 import './FacultyWall.css'
@@ -48,7 +48,7 @@ function LoadingBanner() {
             <span />
             <span />
           </span>
-          Rounding up 56 wonderful teachers&hellip;
+          Rounding up {facultyMembers.length} wonderful teachers&hellip;
         </motion.div>
       )}
     </AnimatePresence>
@@ -148,7 +148,42 @@ function ScrollForMore({ onClick }) {
   )
 }
 
+function SearchBar({ value, onChange }) {
+  return (
+    <div className="faculty__search">
+      <span className="faculty__search-icon" aria-hidden="true">
+        &#128269;
+      </span>
+      <input
+        type="text"
+        className="faculty__search-input"
+        placeholder="Search&hellip;"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        aria-label="Search faculty by name"
+      />
+      {value && (
+        <button
+          className="faculty__search-clear"
+          onClick={() => onChange('')}
+          aria-label="Clear search"
+        >
+          &times;
+        </button>
+      )}
+    </div>
+  )
+}
+
 export default function FacultyWall() {
+  const [query, setQuery] = useState('')
+
+  const filteredMembers = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return facultyMembers
+    return facultyMembers.filter((m) => m.name.toLowerCase().includes(q))
+  }, [query])
+
   function scrollForMore(e) {
     const container = e.currentTarget.closest('.page__scroll')
     if (container) {
@@ -169,16 +204,24 @@ export default function FacultyWall() {
         <h2 className="faculty__title">The people behind the lessons.</h2>
       </motion.div>
 
+      <SearchBar value={query} onChange={setQuery} />
+
       <p className="faculty__hint">Tap a card for a little note.</p>
 
       <LoadingBanner />
 
       <div className="faculty__scroll-wrap">
-        <div className="faculty__grid">
-          {facultyMembers.map((member) => (
-            <FacultyCard member={member} key={member.id} />
-          ))}
-        </div>
+        {filteredMembers.length > 0 ? (
+          <div className="faculty__grid">
+            {filteredMembers.map((member) => (
+              <FacultyCard member={member} key={member.id} />
+            ))}
+          </div>
+        ) : (
+          <p className="faculty__no-results">
+            No one matches &ldquo;{query}&rdquo; &mdash; try a different spelling?
+          </p>
+        )}
 
         <ScrollForMore onClick={scrollForMore} />
       </div>
