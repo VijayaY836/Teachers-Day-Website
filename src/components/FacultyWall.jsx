@@ -92,7 +92,7 @@ function FacultyCard({ member }) {
         className="faculty-card__inner"
         onClick={() => setFlipped((f) => !f)}
         aria-expanded={flipped}
-        aria-label={`${member.name}, tap to reveal a student memory`}
+        aria-label={`${member.name}, tap to reveal a little note`}
         style={{ rotateX: tiltX }}
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ rotateY: { type: 'spring', stiffness: 160, damping: 20 } }}
@@ -120,7 +120,7 @@ function FacultyCard({ member }) {
           <p className="faculty-card__name">{member.name}</p>
           {member.designation && <p className="faculty-card__role">{member.designation}</p>}
           {member.subject && <p className="faculty-card__subject">{member.subject}</p>}
-          <span className="faculty-card__flip-hint">tap for a memory</span>
+          <span className="faculty-card__flip-hint">tap for a little note</span>
         </div>
 
         <div className="faculty-card__face faculty-card__face--back">
@@ -133,7 +133,29 @@ function FacultyCard({ member }) {
   )
 }
 
+function ScrollForMore({ onClick }) {
+  return (
+    <button className="faculty__scroll-more" onClick={onClick}>
+      Scroll for more
+      <motion.span
+        className="faculty__scroll-more-arrow"
+        animate={{ y: [0, 4, 0] }}
+        transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        &darr;
+      </motion.span>
+    </button>
+  )
+}
+
 export default function FacultyWall() {
+  function scrollForMore(e) {
+    const container = e.currentTarget.closest('.page__scroll')
+    if (container) {
+      container.scrollBy({ top: container.clientHeight * 0.75, behavior: 'smooth' })
+    }
+  }
+
   return (
     <section className="section" id="faculty">
       <motion.div
@@ -147,12 +169,18 @@ export default function FacultyWall() {
         <h2 className="faculty__title">The people behind the lessons.</h2>
       </motion.div>
 
+      <p className="faculty__hint">Tap a card for a little note.</p>
+
       <LoadingBanner />
 
-      <div className="faculty__grid">
-        {facultyMembers.map((member) => (
-          <FacultyCard member={member} key={member.id} />
-        ))}
+      <div className="faculty__scroll-wrap">
+        <div className="faculty__grid">
+          {facultyMembers.map((member) => (
+            <FacultyCard member={member} key={member.id} />
+          ))}
+        </div>
+
+        <ScrollForMore onClick={scrollForMore} />
       </div>
     </section>
   )
