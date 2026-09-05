@@ -18,8 +18,8 @@
 // =========================================================
 
 const RAW = [
-  ['Dr. KVN Sunitha', 'https://media.licdn.com/dms/image/v2/D5603AQFENqUMtLhS6Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718287542780?e=2147483647&v=beta&t=aVSxEsIFX8x2bH70w05B5dKNyQIJBXbLElKy8KrXn4c', 'Led with grace, and always found time to actually listen.'],  
-  ['Dr. A. Sharada', 'https://bvrithyderabad.edu.in/wp-content/uploads/2026/07/Principal1.jpg', 'Led with grace, and always found time to actually listen.'],  
+  ['Dr. KVN Sunitha', 'https://media.licdn.com/dms/image/v2/D5603AQFENqUMtLhS6Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718287542780?e=2147483647&v=beta&t=aVSxEsIFX8x2bH70w05B5dKNyQIJBXbLElKy8KrXn4c', 'Her leadership was gentle, her ear always open.'],  
+  ['Dr. A. Sharada', 'https://bvrithyderabad.edu.in/wp-content/uploads/2026/07/Principal1.jpg', 'She makes leading look like kindness in motion.'],  
   ['Dr. Aruna Rao S L', 'https://bvrithyderabad.edu.in/wp-content/uploads/2025/07/DrArunaRaoSL_HoD_CSE.jpg', 'The kind of guidance that quietly shapes an entire department.'],
   ['Ms. Swapna D', 'https://bvrithyderabad.edu.in/wp-content/uploads/2023/06/swapna-cse-faculty-bvrit-hyderabad-engineering-women-college.webp', 'Turned late assignments into lessons, not lectures.'],
   ['Dr. R. Suneetha Rani', 'https://bvrithyderabad.edu.in/wp-content/uploads/2024/08/DrSuneethaRani.jpg', 'Explained the hardest topics like they were the easiest.'],

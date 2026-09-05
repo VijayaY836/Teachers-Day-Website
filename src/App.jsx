@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react'
-import BootScreen from './components/BootScreen'
+// import BootScreen from './components/BootScreen' // "teachers_day.exe" boot sequence — hidden, re-add to bring it back
 import Hero from './components/Hero'
 import LetterSection from './components/LetterSection'
 // import ConceptCards from './components/ConceptCards' // "Things You Taught Us" — hidden, re-add to bring the page back
@@ -57,7 +57,6 @@ function PageProgress({ containerRef }) {
 }
 
 export default function App() {
-  const [booted, setBooted] = useState(false)
   const [index, setIndex] = useState(0)
   const scrollRef = useRef(null)
 
@@ -78,44 +77,38 @@ export default function App() {
   }
 
   return (
-    <>
-      {!booted && <BootScreen onFinish={() => setBooted(true)} />}
+    <div className="app">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={page.key}
+          className="page"
+          style={{ background: `var(--${page.bg})` }}
+          variants={pageVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          <PageProgress containerRef={scrollRef} />
 
-      {booted && (
-        <div className="app">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={page.key}
-              className="page"
-              style={{ background: `var(--${page.bg})` }}
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <PageProgress containerRef={scrollRef} />
+          <div className="page__scroll" ref={scrollRef}>
+            {page.key === 'hero' ? <Component onEnter={goNext} /> : <Component />}
+          </div>
 
-              <div className="page__scroll" ref={scrollRef}>
-                {page.key === 'hero' ? <Component onEnter={goNext} /> : <Component />}
-              </div>
+          {page.nav !== false && (
+            <PageNav
+              step={index}
+              totalSteps={PAGES.length}
+              onBack={goBack}
+              onNext={goNext}
+              onJumpTo={jumpTo}
+              nextLabel={page.cta}
+              nextDisabled={isLast}
+            />
+          )}
+        </motion.div>
+      </AnimatePresence>
 
-              {page.nav !== false && (
-                <PageNav
-                  step={index}
-                  totalSteps={PAGES.length}
-                  onBack={goBack}
-                  onNext={goNext}
-                  onJumpTo={jumpTo}
-                  nextLabel={page.cta}
-                  nextDisabled={isLast}
-                />
-              )}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Easter egg trigger hidden for now — re-add <EasterEgg /> here to bring it back */}
-        </div>
-      )}
-    </>
+      {/* Easter egg trigger hidden for now — re-add <EasterEgg /> here to bring it back */}
+    </div>
   )
 }
