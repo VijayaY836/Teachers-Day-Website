@@ -1,0 +1,60 @@
+.letter {
+  display: flex;
+  justify-content: center;
+}
+
+.letter__paper {
+  position: relative;
+  width: 100%;
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: clamp(36px, 6vw, 68px);
+  box-shadow: 0 40px 90px -40px rgba(44, 36, 28, 0.35);
+  border: 1px solid rgba(44, 36, 28, 0.06);
+}
+
+.letter__stamp {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+}
+
+.letter__greeting {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--coral-deep);
+  margin-bottom: 22px;
+}
+
+.letter__body {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 22px;
+  max-width: 62ch;
+}
+
+.letter__closing-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+  color: var(--coral-deep);
+  margin-bottom: 30px;
+}
+
+.letter__sign {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(44, 36, 28, 0.18);
+}
+
+.letter__sign span {
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--ink);
+}

@@ -1,0 +1,49 @@
+.app {
+  position: relative;
+  height: 100dvh;
+  overflow: hidden;
+  background-image: url('/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .app {
+    /* fixed backgrounds can jitter on mobile browsers during scroll */
+    background-attachment: scroll;
+  }
+}
+
+.page {
+  position: relative;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  transform-origin: left;
+  background: linear-gradient(to right, var(--coral), var(--lavender));
+  z-index: 5;
+}
+
+.page__scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hero and the final gift manage their own full-height layout and don't
+   need the section's default vertical padding doubled up. */
+.page__scroll > .hero,
+.page__scroll > .gift {
+  min-height: 100%;
+}

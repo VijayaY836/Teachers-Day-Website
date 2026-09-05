@@ -1,0 +1,80 @@
+.concepts__header {
+  max-width: 620px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.concepts__title {
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+  margin-top: 14px;
+  line-height: 1.25;
+}
+
+.concepts__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.concept {
+  position: relative;
+  text-align: left;
+  background: var(--paper);
+  border: 1.5px solid rgba(44, 36, 28, 0.08);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 26px 24px 22px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.4s var(--ease-out-soft);
+}
+
+.concept:hover {
+  box-shadow: 0 24px 50px -24px rgba(44, 36, 28, 0.3);
+}
+
+.concept__tag {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.concept__snippet {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+  background: var(--ivory-deep);
+  border-radius: 10px;
+  padding: 12px 14px;
+  white-space: pre-wrap;
+  margin: 0 0 18px;
+  line-height: 1.55;
+}
+
+.concept__divider {
+  height: 1px;
+  background: rgba(44, 36, 28, 0.1);
+  margin-bottom: 16px;
+}
+
+.concept__lesson {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink);
+  overflow: hidden;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.concept__hint {
+  margin-top: auto;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
